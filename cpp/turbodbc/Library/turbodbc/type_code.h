@@ -11,6 +11,7 @@ enum class type_code : int {
 	floating_point = 20,    ///< floating point types
 	string = 30,            ///< string types
 	unicode = 31,           ///< unicode types
+	bytes = 32,             ///< bytes types
 	timestamp = 40,         ///< timestamp types
 	date = 41               ///< date type
 };

@@ -42,6 +42,8 @@ namespace {
                 return reinterpret_steal<object>(PyUnicode_FromString(data_pointer));
             case type_code::unicode:
                 return reinterpret_steal<object>(PyUnicode_DecodeUTF16(data_pointer, size, NULL, NULL));
+            case type_code::bytes:
+                return reinterpret_steal<object>(PyBytes_FromStringAndSize(data_pointer, size));
             case type_code::date:
                 return make_date(*reinterpret_cast<SQL_DATE_STRUCT const *>(data_pointer));
             case type_code::timestamp:

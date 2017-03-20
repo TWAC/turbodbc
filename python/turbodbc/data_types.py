@@ -14,12 +14,13 @@ _INTEGER_CODE = 10
 _FLOATING_POINT_CODE = 20
 _STRING_CODE = 30
 _UNICODE_CODE = 31
+_BYTES_CODE = 32
 _TIMESTAMP_CODE = 40
 _DATE_CODE = 41
 
 # data types according to https://www.python.org/dev/peps/pep-0249/#type-objects-and-constructors
 STRING = DataType([_STRING_CODE, _UNICODE_CODE])
-BINARY = DataType([])
+BINARY = DataType([_BYTES_CODE])
 NUMBER = DataType([_BOOLEAN_CODE, _INTEGER_CODE, _FLOATING_POINT_CODE])
 DATETIME = DataType([_DATE_CODE, _TIMESTAMP_CODE])
 ROWID = DataType([])

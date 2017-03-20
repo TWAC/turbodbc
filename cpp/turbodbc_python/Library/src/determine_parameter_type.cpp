@@ -48,6 +48,13 @@ namespace {
         destination.indicator = 2 * s.size();
     }
 
+    void set_bytes(pybind11::handle const & value, cpp_odbc::writable_buffer_element & destination)
+    {
+        auto ptr = value.ptr();
+        std::memcpy(destination.data_pointer, PyBytes_AsString(ptr), PyBytes_Size(ptr));
+        destination.indicator = PyBytes_Size(ptr);
+    }
+
     void set_date(pybind11::handle const & value, cpp_odbc::writable_buffer_element & destination)
     {
         auto ptr = value.ptr();
@@ -115,6 +122,10 @@ python_parameter_info determine_parameter_type(pybind11::handle const & value, t
 
     if (PyDate_Check(ptr)) {
         return {set_date, type_code::date, size_not_important};
+    }
+
+    if (PyBytes_Check(ptr)) {
+        return {set_bytes, type_code::bytes, size_not_important};
     }
 
     throw std::runtime_error("Could not convert python value to C++");

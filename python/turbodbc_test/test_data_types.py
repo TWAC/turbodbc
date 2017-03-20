@@ -6,6 +6,7 @@ ALL_TYPE_CODES = [turbodbc.data_types._BOOLEAN_CODE,
                   turbodbc.data_types._FLOATING_POINT_CODE,
                   turbodbc.data_types._STRING_CODE,
                   turbodbc.data_types._UNICODE_CODE,
+                  turbodbc.data_types._BYTES_CODE,
                   turbodbc.data_types._TIMESTAMP_CODE,
                   turbodbc.data_types._DATE_CODE]
 

@@ -115,6 +115,9 @@ std::unique_ptr<description const> make_description(cpp_odbc::column_description
 			return std::unique_ptr<description>(new date_description(source.name, source.allows_null_values));
 		case SQL_TYPE_TIMESTAMP:
 			return std::unique_ptr<description>(new timestamp_description(source.name, source.allows_null_values));
+		case SQL_VARBINARY:
+		case SQL_LONGVARBINARY:
+			return std::unique_ptr<description>(new bytes_description(source.name, source.allows_null_values, source.size)); 
 		default:
 			std::ostringstream message;
 			message << "Error! Unsupported type identifier '" << source.data_type << "'";
@@ -143,6 +146,8 @@ std::unique_ptr<description const> make_description(type_code type, std::size_t 
 			return std::unique_ptr<description const>(new string_description(size_after_growth_strategy(size)));
 		case type_code::unicode:
 			return std::unique_ptr<description const>(new unicode_description(size_after_growth_strategy(size)));
+		case type_code::bytes:
+			return std::unique_ptr<description const>(new bytes_description(size_after_growth_strategy(size)));
 		default:
 			return std::unique_ptr<description const>(new integer_description);
 	}

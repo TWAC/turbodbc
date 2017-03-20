@@ -22,6 +22,8 @@ std::unique_ptr<field_translator const> make_field_translator(turbodbc::column_i
 			return std::unique_ptr<int64_translator>(new int64_translator());
 		case type_code::string:
 			return std::unique_ptr<string_translator>(new string_translator());
+		case type_code::bytes:
+			return std::unique_ptr<bytes_translator>(new bytes_translator());
 		case type_code::timestamp:
 			return std::unique_ptr<timestamp_translator>(new timestamp_translator());
 		default:
